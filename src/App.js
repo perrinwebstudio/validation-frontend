@@ -31,19 +31,24 @@ export default function App() {
       const formData = new FormData();
       formData.append('email', email);
       formData.append('csvFile', selectedFile);
-      console.log('----- file: ', formData)
 
       // Make API call using Axios
-      const response = await axios.post('http://localhost:3000/upload', formData);
+      const response = await axios.post('http://3.145.128.200:3000/upload', formData);
       console.log('----- response: ', response)
       // Handle success
       setSuccess('File uploaded successfully!');
       setEmail('');
       setSelectedFile(null);
       setError('');
+      setTimeout(() => {
+        setSuccess('')
+      }, 5000);
     } catch (error) {
       // Handle error
       setError('Error uploading file. Please try again.');
+      setTimeout(() => {
+        setError('')
+      }, 5000);
     }
   };
 
